@@ -1,11 +1,10 @@
 import './App.css';
-import React, { Component } from 'react';
+import React from 'react';
 
 import Navbar from './components/layout/Navbar';
 import Users from './components/users/Users';
 
-class App extends Component {
-  render() {
+const App = () => {
     return (
       <div className="app">
         <Navbar />
@@ -14,7 +13,6 @@ class App extends Component {
         </div>
       </div>
     );
-  }
 }
 
 export default App;
