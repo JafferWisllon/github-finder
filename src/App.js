@@ -13,16 +13,17 @@ class App extends React.Component {
     loading: false
   }
 
-  async componentDidMount() {
+  // Search Users
+  searchUsers = async (text) => {
     this.setState({ loading: true })
     
-    const res = await axios.get('https://api.github.com/users')
+    const res = await axios.get(`https://api.github.com/search/users?q=${text}`)
     
     this.setState({
-      users: res.data
+      users: res.data.items,
+      loading: false
     })
 
-    this.setState({ loading: false })
   }
 
   render() {
@@ -30,7 +31,7 @@ class App extends React.Component {
       <div className="app">
         <Navbar />
         <div className="container">
-          <Search />
+          <Search searchUsers={this.searchUsers}/>
           <Users loading={this.state.loading} users={this.state.users}/>
         </div>
       </div>
